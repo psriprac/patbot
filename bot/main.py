@@ -21,12 +21,15 @@ async def whoami(ctx) :
 async def clear(ctx, amount=3) :
     await ctx.channel.purge(limit=amount)
 
-@client.command()
-async def nordboy(ctx, member:discord.Member, nordboy: discord.Role): #pass user and role
-    if nordboy in member.roles: #checks all roles the member has
-        await member.remove_roles(nordboy) #removes the role
+@commands.guild_only()
+@bot.command()
+async def nordboy(ctx):
+    role = discord.utils.get(ctx.guild.roles, name="nordboy")
+    if role in ctx.author.roles:
+        await ctx.send(f'You already have the role {role.name}')
     else:
-        await member.add_roles(nordboy) #adds the role
+        await ctx.author.add_roles(role)
+        await ctx.send(":white_check_mark: User is now a nordboy")
 
 token = os.getenv("DISCORD_BOT_TOKEN")
 client.run(token)
