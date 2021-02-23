@@ -22,7 +22,7 @@ async def clear(ctx, amount=3) :
     await ctx.channel.purge(limit=amount)
 
 @commands.guild_only()
-@bot.command()
+@client.command()
 async def nordboy(ctx):
     role = discord.utils.get(ctx.guild.roles, name="nordboy")
     if role in ctx.author.roles:
