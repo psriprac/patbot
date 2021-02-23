@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import json
+import os
 
 with open('bot\config.json') as f:
     data = json.load(f)
@@ -24,5 +24,5 @@ async def whoami(ctx) :
 async def clear(ctx, amount=3) :
     await ctx.channel.purge(limit=amount)
 
-token = data['DISCORD_BOT_TOKEN']
+token = os.getenv("DISCORD_BOT_TOKEN")
 client.run(token)
