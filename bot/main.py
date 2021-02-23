@@ -21,5 +21,12 @@ async def whoami(ctx) :
 async def clear(ctx, amount=3) :
     await ctx.channel.purge(limit=amount)
 
+@client.command()
+async def nordboy(ctx, member:discord.Member, nordboy: discord.Role): #pass user and role
+    if nordboy in member.roles: #checks all roles the member has
+        await member.remove_roles(nordboy) #removes the role
+    else:
+        await member.add_roles(nordboy) #adds the role
+
 token = os.getenv("DISCORD_BOT_TOKEN")
 client.run(token)
